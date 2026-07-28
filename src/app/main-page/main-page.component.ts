@@ -1,17 +1,10 @@
 import { Component, signal } from '@angular/core';
-
-interface Post {
-  username: string;
-  avatar: string;
-  img: string;
-  likes: number;
-  caption: string;
-  isLiked: boolean;
-}
+import { Post } from '../interfaces/post.interface';
+import { SinglePostComponent } from './single-post/single-post.component';
 
 @Component({
   selector: 'app-main-page',
-  imports: [],
+  imports: [SinglePostComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
@@ -34,9 +27,5 @@ export class MainPageComponent {
       isLiked: false
     },
   ]);
-  toggleLike(post: Post) {
-    post.isLiked = !post.isLiked;
-    post.likes = post.isLiked ? post.likes + 1 : post.likes - 1;
-  }
 }
 
