@@ -25,7 +25,18 @@
 
     <!-- Actions (Likes, Comments, Share) -->
     <div class="post-actions">
-      <button type="button" class="action-btn" aria-label="Gefällt mir">❤️</button>
+      <button 
+        type="button" 
+        class="action-btn" 
+        (click)="toggleLike(post)"
+        aria-label="Gefällt mir">
+        @if (post.isLiked) {
+          <span class="heart liked">❤️</span>
+        } @else {
+          <span class="heart">🤍</span>
+        }
+      </button>
+      
       <button type="button" class="action-btn" aria-label="Kommentieren">💬</button>
       <button type="button" class="action-btn" aria-label="Teilen">✈️</button>
     </div>

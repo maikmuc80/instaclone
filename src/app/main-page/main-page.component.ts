@@ -6,6 +6,7 @@ interface Post {
   img: string;
   likes: number;
   caption: string;
+  isLiked: boolean;
 }
 
 @Component({
@@ -20,15 +21,22 @@ export class MainPageComponent {
       username: 'max_mustermann',
       avatar: 'https://picsum.photos/id/1005/40/40',
       img: 'https://picsum.photos/id/1015/600/600',
-      likes: 42,
-      caption: 'Mein erstes Angular Projekt sieht schon aus wie Instagram! 🚀'
+      likes: 0,
+      caption: 'Mein erstes Angular Projekt sieht schon aus wie Instagram! 🚀',
+      isLiked: false
     },
     {
       username: 'erika_musterfrau',
       avatar: 'https://picsum.photos/id/1011/40/40',
       img: 'https://picsum.photos/id/1016/600/600',
-      likes: 128,
-      caption: 'Signals sind wirklich angenehm zu benutzen. ✨'
-    }
+      likes: 0,
+      caption: 'Signals sind wirklich angenehm zu benutzen. ✨',
+      isLiked: false
+    },
   ]);
+  toggleLike(post: Post) {
+    post.isLiked = !post.isLiked;
+    post.likes = post.isLiked ? post.likes + 1 : post.likes - 1;
+  }
 }
+
