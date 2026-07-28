@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Post } from '../../interfaces/post.interface';
 
 @Component({
@@ -8,10 +8,11 @@ import { Post } from '../../interfaces/post.interface';
   styleUrl: './single-post.component.scss'
 })
 export class SinglePostComponent {
-  @Input({ required: true }) post!: Post;
+  post = input.required<Post>();
 
   toggleLike() {
-    this.post.isLiked = !this.post.isLiked;
-    this.post.likes = this.post.isLiked ? this.post.likes + 1 : this.post.likes - 1;
+    const post = this.post();
+    post.isLiked = !post.isLiked;
+    post.likes = post.isLiked ? post.likes + 1 : post.likes - 1;
   }
 }

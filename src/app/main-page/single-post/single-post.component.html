@@ -1,19 +1,19 @@
 <article class="post-card">
     <!-- Header: Profilbild & Username -->
     <header class="post-header">
-        <img class="avatar" [src]="post.avatar" [alt]="'Profilbild von ' + post.username" width="40" height="40" />
-        <span class="username">{{ post.username }}</span>
+        <img class="avatar" [src]="post().avatar" [alt]="'Profilbild von ' + post().username" width="40" height="40" />
+        <span class="username">{{ post().username }}</span>
     </header>
 
     <!-- Image -->
     <div class="post-image-container">
-        <img class="post-image" [src]="post.img" [alt]="'Beitrag von ' + post.username" width="600" height="600" />
+        <img class="post-image" [src]="post().img" [alt]="'Beitrag von ' + post().username" width="600" height="600" />
     </div>
 
     <!-- Actions (Likes, Comments, Share) -->
     <div class="post-actions">
-        <button type="button" class="action-btn"  (click)="toggleLike()" aria-label="Gefällt mir">
-            @if (post.isLiked) {
+        <button type="button" class="action-btn" (click)="toggleLike()" aria-label="Gefällt mir">
+            @if (post().isLiked) {
             <span class="heart liked">❤️</span>
             } @else {
             <span class="heart">🤍</span>
@@ -26,9 +26,9 @@
 
     <!-- Content / Caption -->
     <div class="post-content">
-        <p class="likes-count"><strong>{{ post.likes }} Gefällt mir-Angaben</strong></p>
+        <p class="likes-count"><strong>{{ post().likes }} Gefällt mir-Angaben</strong></p>
         <p class="caption">
-            <strong>{{ post.username }}</strong> {{ post.caption }}
+            <strong>{{ post().username }}</strong> {{ post().caption }}
         </p>
     </div>
 </article>
