@@ -30,5 +30,20 @@
         <p class="caption">
             <strong>{{ post().username }}</strong> {{ post().caption }}
         </p>
+
+        <!-- Kommentare -->
+        @for (comment of post().comments; track $index) {
+        <p class="comment">{{ comment }}</p>
+        } @empty {
+        <p class="no-comments">Noch keine Kommentare</p>
+        }
+    </div>
+
+    <!-- Neuen Kommentar schreiben -->
+    <div class="comment-form">
+        <input type="text" class="comment-input" placeholder="Kommentar hinzufügen…" [value]="newComment()"
+            (input)="updateNewComment($event)" (keyup.enter)="addComment()" />
+        <button type="button" class="comment-btn" [disabled]="!newComment().trim()"
+            (click)="addComment()">Posten</button>
     </div>
 </article>

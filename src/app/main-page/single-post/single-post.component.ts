@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Post } from '../../interfaces/post.interface';
 
 @Component({
@@ -9,10 +9,26 @@ import { Post } from '../../interfaces/post.interface';
 })
 export class SinglePostComponent {
   post = input.required<Post>();
+  index = input.required<number>();
+
+  likeToggled = output<Post>();
+  commentAdded = output<{ index: number; text: string }>();
+
+  newComment = signal('');
 
   toggleLike() {
-    const post = this.post();
-    post.isLiked = !post.isLiked;
-    post.likes = post.isLiked ? post.likes + 1 : post.likes - 1;
+    this.likeToggled.emit(this.post());
+  }
+
+  updateNewComment(event: Event) {
+    this.newComment.set((event.target as HTMLInputElement).value);
+  }
+
+  addComment() {
+    const text = this.newComment().trim();
+    if (!text) return;
+
+    this.commentAdded.emit({ index: this.index(), text });
+    this.newComment.set('');
   }
 }

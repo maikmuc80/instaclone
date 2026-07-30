@@ -16,7 +16,8 @@ export class MainPageComponent {
       img: 'https://picsum.photos/id/1015/600/600',
       likes: 0,
       caption: 'Mein erstes Angular Projekt sieht schon aus wie Instagram! 🚀',
-      isLiked: false
+      isLiked: false,
+      comments: ['Sieht super aus! 👏', 'Wie hast du das gemacht?']
     },
     {
       username: 'erika_musterfrau',
@@ -24,8 +25,32 @@ export class MainPageComponent {
       img: 'https://picsum.photos/id/1016/600/600',
       likes: 0,
       caption: 'Signals sind wirklich angenehm zu benutzen. ✨',
-      isLiked: false
+      isLiked: false,
+      comments: []
     },
   ]);
+  toggleLike(target: Post) {
+    this.posts.update(posts =>
+      posts.map(post =>
+        post === target
+          ? {
+              ...post,
+              isLiked: !post.isLiked,
+              likes: post.isLiked ? post.likes - 1 : post.likes + 1
+            }
+          : post
+      )
+    );
+  }
+
+  addComment(event: { index: number; text: string }) {
+    this.posts.update(posts =>
+      posts.map((post, i) =>
+        i === event.index
+          ? { ...post, comments: [...post.comments, event.text] }
+          : post
+      )
+    );
+  }
 }
 

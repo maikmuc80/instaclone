@@ -5,4 +5,5 @@ export interface Post {
   likes: number;
   caption: string;
   isLiked: boolean;
+  comments: string[];
 }

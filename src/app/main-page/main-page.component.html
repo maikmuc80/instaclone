@@ -1,3 +1,8 @@
 @for (post of posts(); track post.username) {
-  <app-single-post [post]="post" />
+  <app-single-post
+    [post]="post"
+    [index]="$index"
+    (likeToggled)="toggleLike($event)"
+    (commentAdded)="addComment($event)"
+  />
 }
